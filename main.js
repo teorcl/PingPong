@@ -141,7 +141,7 @@
     }
 
     function hit(a,b){
-        //Revisa si a colisiona con b
+        /*//Revisa si a colisiona con b
         var hit = false;
         //colisiones horizontales
         if(b.x + b.width >= a.x && b.x < a.x + a.width){
@@ -158,7 +158,33 @@
         if(a.x <= b.x && a.x + a.width >= b.x + b.width){
             if(a.y <= b.y && a.y + a.height >= b.y + b.height) hit = true;
         }
-        return hit;
+        return hit;*/
+
+            //Revisa si a colisiona con b
+            var hit = false;
+            //Colisiones hirizontales
+            if(b.x + b.width >= a.x && b.x < a.x + a.width){
+
+                //Colisiona verticales
+                if (b.y + b.height >= a.y && b.y < a.y + a.height)
+                    hit = true;
+            }
+
+            //Colisión de a con b
+            if(b.x <= a.x && b.x + b.width >= a.x + a.width){
+
+                if (b.y <= a.y && b.y + b.height >= a.y + a.height)
+                    hit = true;
+            }
+
+            //Colision b con a
+            if(a.x <= b.x && a.x + a.width >= b.x + b.width){
+                //Colisiona verticales
+                if (a.y <= b.y && a.y + a.height >= b.y + b.height)
+                    hit = true;
+            }
+            return hit;
+
     }
 
     function draw(ctx, element){
@@ -190,17 +216,17 @@ var ball = new Ball(350,100,10,board);
 document.addEventListener("keydown",function (ev){
 
 
-    if(ev.keyCode === 38){
+    if(ev.keyCode ===  87/*38*/){
         ev.preventDefault();
         bar.up();
-    } else if(ev.keyCode === 40){
+    } else if(ev.keyCode === 83 /*40*/){
         ev.preventDefault();
         bar.down();
-    } else if(ev.keyCode === 87){
+    } else if(ev.keyCode === 38 /*87*/){
         ev.preventDefault();
         //w
         bar_2.up();
-    } else if(ev.keyCode === 83) {
+    } else if(ev.keyCode === 40 /*83*/) {
         ev.preventDefault();
         //s
         bar_2.down();
