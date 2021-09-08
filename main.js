@@ -123,6 +123,10 @@
             };
         },
         check_collisions: function (){
+
+            puntajes_jugador1 = document.querySelector(".puntajeJugador1");
+            puntajes_jugador2 = document.querySelector(".puntajeJugador2");
+
             for (var i = this.board.bars.length - 1; i >= 0; i--) {
                 var bar = this.board.bars[i];
                 if(hit(bar, this.board.ball)){
@@ -146,10 +150,15 @@
                 this.board.ball.x = 350;
                 this.board.ball.y = 150;
                 this.board.bars.y = 100;
-                alert("jugador 1 lose");
+                swal({
+                    title: "jugador 2 ganas un punto",
+                    icon: "success",
+                    button: "Continuar",
+                });
                 this.board.ball.speed=3;
                 board_view.draw();
                 this.board.ball.speed_x =this.board.ball.speed_x * -1;
+                puntajes_jugador2.innerHTML=(Number(puntajes_jugador2.innerHTML)+1);
 
             }
 
@@ -159,10 +168,15 @@
                 this.board.ball.x = 350;
                 this.board.ball.y = 150;
                 //this.board.bar.y = 100;
-                alert("jugador 2, lose");
+                swal({
+                    title: "jugador 1 ganas un punto",
+                    icon: "success",
+                    button: "Continuar",
+                });
                 this.board.ball.speed=3;
                 board_view.draw();
                 this.board.ball.speed_x =this.board.ball.speed_x * -1;
+                puntajes_jugador1.innerHTML=(Number(puntajes_jugador1.innerHTML)+1);
 
             }
 
@@ -262,14 +276,9 @@ document.addEventListener("keydown",function (ev){
 board_view.draw();
 
 window.requestAnimationFrame(controller);
-/*setTimeout(function (){
-    ball.direction = -1;
-},4000); */
 function controller(){
 
     board_view.play()
-    //board_view.clean();
-    //board_view.draw();
     window.requestAnimationFrame(controller);
 
 }

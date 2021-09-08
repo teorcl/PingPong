@@ -6,11 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        .puntajeJugador1{
+            color: #ed0505;
+        }
         .text-center{
             margin-left: 280px;
         }
-        canvas{ border: 2px solid #FFF;
-            background-image: url("http://www.mesapingpongprofesional.es/wp-content/uploads/2016/08/medidas-mesa-ping-pong-profesional-1.jpg");}
+        .jugador_1{
+            margin-left: 5px;
+        }
+        .jugador_2{
+            margin-left: 545px;
+        }
+        canvas{ border: 2px solid #ed0505;
+                border-radius: 10px;
+                background-image: url("http://www.mesapingpongprofesional.es/wp-content/uploads/2016/08/medidas-mesa-ping-pong-profesional-1.jpg");
+                background-color: transparent;}
 
     </style>
 </head>
@@ -18,8 +29,27 @@
     <div class="text-center">
         <h1>Ping Pong por Teo</h1>
     </div>
-    <canvas id="canvas"></canvas>
+    <div>
+        <table>
+            <tr>
+                <td ><h3 class="jugador_1">GAMER 1 </h3>  </td>
+                <td> <h1 type="number" class="puntajeJugador1" size = "10" style="width : 50px;"> 0 </h1> </td>
+                <td> <h3 class="jugador_2">GAMER 2 </h3>  </td>
+                <td> <h1 type="number" class="puntajeJugador2" size = "10" style="width : 50px;"> 0 </h1></td>
+            </tr>
+
+        </table>
+    </div>
+    <div><canvas id="canvas"></canvas></div>
+    <div><button style="margin-left: 340px"  onclick="swal({
+  title: 'Insctrucciones',
+        text: 'Presione la barra espaciadora para iniciar y para pausar, use las teclas w,s y las teclas de subir y bajar para mover las barras (raquetas)',
+        icon: 'warning',
+        });"> INSTRUCCIONES </button></div>
+
+
     <script src="main.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </body>
 </html>
