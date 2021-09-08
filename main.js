@@ -69,6 +69,9 @@
                 this.direction = 1;
                 this.speed += 1;
             }
+
+
+
         }
     }
 
@@ -83,7 +86,7 @@
         this.board = board;
         this.board.bars.push(this);
         this.kind = "rectangle";
-        this.speed = 10;
+        this.speed = 5;
     }
 
     /**Para mover las barras**/
@@ -128,7 +131,18 @@
                     this.board.ball.collision(bar);
                 }
             }
+
+            if(this.board.ball.y <= 1 ){
+                console.log("estoy en la parte de arriba")
+                this.board.ball.speed_y = this.board.ball.speed_y * -1;
+            }
+            if(this.board.ball.y >= 400){
+                console.log("estoy en la parte de abajo")
+                this.board.ball.speed_y = this.board.ball.speed_y * -1;
+            }
         },
+
+
         play: function (){
             if(this.board.playing){
                 this.clean();
@@ -141,25 +155,6 @@
     }
 
     function hit(a,b){
-        /*//Revisa si a colisiona con b
-        var hit = false;
-        //colisiones horizontales
-        if(b.x + b.width >= a.x && b.x < a.x + a.width){
-            //Colisiones verticales
-            if(b.y + b.height >= a.y && b.y < a.y + a.height) hit = true;
-        }
-
-        //colision de a con b
-        if(b.x <= a.x && b.x + b.width >= a.x + a.width){
-            if(b.y <= a.y && b.y + b.height >= a.y + a.height) hit = true;
-        }
-
-        //Colision de b con a
-        if(a.x <= b.x && a.x + a.width >= b.x + b.width){
-            if(a.y <= b.y && a.y + a.height >= b.y + b.height) hit = true;
-        }
-        return hit;*/
-
             //Revisa si a colisiona con b
             var hit = false;
             //Colisiones hirizontales
@@ -191,9 +186,11 @@
 
         switch (element.kind){
             case "rectangle":
+                ctx.fillStyle = "blue";
                 ctx.fillRect(element.x, element.y, element.width, element.height);
                 break;
             case "circle":
+                ctx.fillStyle = "red";
                 ctx.beginPath();
                 ctx.arc(element.x,element.y,element.radius,0,7);
                 ctx.fill();
