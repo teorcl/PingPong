@@ -29,7 +29,7 @@
         this.direction = 1;
         this.bounce_angle = 0;
         this.max_bounce_angle = Math.PI / 12;
-        this.speed = 3;
+        this.speed = 3.0;
         board.ball = this;
         this.kind = "circle";
 
@@ -63,14 +63,12 @@
 
             if(this.x > (this.board.width / 2)) {
                 this.direction = -1;
-                this.speed += 1;
+                //this.speed += 1;
             }
             else {
                 this.direction = 1;
-                this.speed += 1;
+                //this.speed += 1;
             }
-
-
 
         }
     }
@@ -86,7 +84,7 @@
         this.board = board;
         this.board.bars.push(this);
         this.kind = "rectangle";
-        this.speed = 5;
+        this.speed = 5.0;
     }
 
     /**Para mover las barras**/
@@ -132,14 +130,42 @@
                 }
             }
 
-            if(this.board.ball.y <= 1 ){
+            if(this.board.ball.y <= 10 ){
                 console.log("estoy en la parte de arriba")
                 this.board.ball.speed_y = this.board.ball.speed_y * -1;
             }
-            if(this.board.ball.y >= 400){
+            if(this.board.ball.y >= 390){
                 console.log("estoy en la parte de abajo")
                 this.board.ball.speed_y = this.board.ball.speed_y * -1;
             }
+
+            if(this.board.ball.x <= -10)
+            {
+
+                board.playing = !board.playing;
+                this.board.ball.x = 350;
+                this.board.ball.y = 150;
+                this.board.bars.y = 100;
+                alert("jugador 1 lose");
+                this.board.ball.speed=3;
+                board_view.draw();
+                this.board.ball.speed_x =this.board.ball.speed_x * -1;
+
+            }
+
+            if(this.board.ball.x >= 810)
+            {
+                board.playing = !board.playing;
+                this.board.ball.x = 350;
+                this.board.ball.y = 150;
+                //this.board.bar.y = 100;
+                alert("jugador 2, lose");
+                this.board.ball.speed=3;
+                board_view.draw();
+                this.board.ball.speed_x =this.board.ball.speed_x * -1;
+
+            }
+
         },
 
 
@@ -186,8 +212,8 @@
 
         switch (element.kind){
             case "rectangle":
-                ctx.fillStyle = "blue";
                 ctx.fillRect(element.x, element.y, element.width, element.height);
+                ctx.fillStyle = "black";
                 break;
             case "circle":
                 ctx.fillStyle = "red";
@@ -202,8 +228,8 @@
 })();
 
 var board = new Board(800,400);
-var bar = new Bar(20,100,40,100,board);
-var bar_2 = new Bar(740,100,40,100,board);
+var bar = new Bar(10,100,20,100,board);
+var bar_2 = new Bar(770,100,20,100,board);
 var canvas = document.getElementById('canvas');
 var board_view = new BoardView(canvas, board);
 var ball = new Ball(350,100,10,board);
