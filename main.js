@@ -11,7 +11,7 @@
     self.Board.prototype = {
         get elements(){
             var elements = this.bars;
-            elements.push(this.ball);
+            //elements.push(this.ball);
             return elements;
         }
     }
@@ -55,6 +55,9 @@
     }
 
     self.BoardView.prototype = {
+        clean: function (){
+            this.ctx.clearRect(0,0,this.board.width,this.board.height);
+        },
         draw: function (){
             for (var i = this.board.elements.length - 1; i >= 0; i--){
                 var el = this.board.elements[i];
@@ -89,12 +92,12 @@ document.addEventListener("keydown",function (ev){
         bar.up();
     } else if(ev.keyCode == 40){
         bar.down();
-    } else if(ev.keyCode === 87){
+    } else if(ev.keyCode == 87){
         //w
         bar_2.up();
-    } else if(ev.keyCode === 83) {
+    } else if(ev.keyCode == 83) {
         //s
-        bar_2.up();
+        bar_2.down();
     }
     //console.log(bar.toString());
 });
@@ -104,6 +107,7 @@ window.requestAnimationFrame(controller);
 
 function controller(){
 
+    board_view.clean();
     board_view.draw();
     window.requestAnimationFrame(controller);
 
