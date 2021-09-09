@@ -8,7 +8,7 @@
         this.ball = null;
         this.playing = false;
     }
-
+    //Función para crear el tablero
     self.Board.prototype = {
         get elements(){
             var elements = this.bars.map(function (bar) {return bar;});
@@ -35,6 +35,7 @@
 
     }
 
+    //Crear el objeto bola
     self.Ball.prototype = {
         move: function (){
             this.x += (this.speed_x * this.direction);
@@ -112,6 +113,7 @@
         this.ctx = canvas.getContext("2d");
     }
 
+    //Crea la vista en 2d del canvas
     self.BoardView.prototype = {
         clean: function (){
             this.ctx.clearRect(0,0,this.board.width,this.board.height);
